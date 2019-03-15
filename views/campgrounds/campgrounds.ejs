@@ -1,0 +1,35 @@
+<% include ../partials/header%>
+
+
+
+<div class='container'>
+    <div class='jumbotron'>
+        <h1>Welcome to Campground</h1>
+        <a href='/campgrounds/new' class='btn btn-primary btn-lg'>Add New Campground</a>
+    </div>
+    
+    <div class='row equal'>
+        <% campgrounds.forEach(function(camp){%>
+            <div class='col-12 col-md-6 col-lg-4 mb-3' >
+                <div class='card'>
+                    <img src="<%= camp.image %>" class='card-image-top campgrounds'>
+                    <div class='card-body text-center'>
+                        <h4 class='card-text'><%=camp.name%></h4>
+                        <a href='/campgrounds/<%=camp._id%>' class='btn btn-lg btn-primary'>More Info</a>
+                    </div>
+                </div>
+            </div>
+        <% })%>
+    </div>
+
+</div>
+<% include ../partials/footer%>
+
+    <!--<div class="card">-->
+    <!--    <img class="card-img-top" src="//placehold.it/720x350" alt="Card image cap">-->
+    <!--    <div class="card-block">-->
+    <!--      <h4 class="card-title">Card title</h4>-->
+    <!--      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+    <!--      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+    <!--    </div>-->
+    <!--  </div>-->

@@ -1,0 +1,42 @@
+<% include ../partials/header%>
+
+
+
+<div class='container'>
+    <h1 class='text-center'>Edit <%= camp.name%></h1>
+    <form action='/campgrounds/<%= camp._id%>?_method=PUT' method='post'>
+        
+        <div class='row mt-4'>
+            <div class='col-3'></div>
+            <div class='col-6'>
+                <input class='form-control' type='text' value="<%=camp.name%>" name="camp[name]">
+            </div>
+        </div>
+        
+        <div class='row mt-2'>
+            <div class='col-3'></div>
+            <div class='col-6'>
+                <input class='form-control' type='text' value="<%=camp.image%>" name="camp[image]">
+            </div>
+        </div>
+        
+        <div class='row mt-2'>
+            <div class='col-3'></div>
+            <div class='col-6'>
+                <input class='form-control' type='text' value= "<%=camp.description%>" name="camp[description]">
+            </div>
+        </div>
+        
+        <div class='row mt-2'>
+            <div class='col-3'></div>
+            <div class='col-6'>
+                <button class='mt-2 btn btn-lg btn-block btn-primary'>Submit!</button>
+                <a href='/campgrounds'>Back</a>
+            </div>
+        </div>
+       
+    </form>
+</div>
+
+
+<% include ../partials/footer%>
