@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
-var url = process.env.databaseURL || 'mongodb://localhost:27017/yelpcamp';
-mongoose.connect(url, {useNewUrlParser: true});
+
 
 var express = require("express");
 var app = express();
@@ -18,7 +17,11 @@ var campgroundsRoute = require("./routers/campgrounds");
 var commentRoute = require("./routers/comments");
 var flash= require("connect-flash");
 
+var url = process.env.databaseURL || 'mongodb://localhost:27017/yelpcamp';
+console.log('the url ===========================================')
+console.log(url);
 
+mongoose.connect(url, {useNewUrlParser: true});
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
