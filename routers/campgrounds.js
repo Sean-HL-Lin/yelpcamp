@@ -55,7 +55,6 @@ router.post('/new', middleWares.isLoggedIn, function(req,res){
 
 //  show -more info page 
 router.get('/campgrounds/:id', function(req,res){
-    console.log(req.params.id);
     camp.findById(req.params.id).populate('comments').exec(function(err, result){
         if(err) {
             console.log('there is a err');
