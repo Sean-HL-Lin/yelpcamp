@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
-var url = process.env.database || 'mongodb://localhost:27017/yelpcamp';
-mongoose.connect('mongodb+srv://Sean-Lin_1:Sean-Lin_1@yelp-camp-database-zusiz.mongodb.net/test?retryWrites=true', {useNewUrlParser: true});
+var url = process.env.databaseURL || 'mongodb://localhost:27017/yelpcamp';
+mongoose.connect(url, {useNewUrlParser: true});
 
 var express = require("express");
 var app = express();
