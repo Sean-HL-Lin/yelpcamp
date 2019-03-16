@@ -1,35 +1,28 @@
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/yelpcamp', {useNewUrlParser: true});
-
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
-
-var camp = require("./models/campground");
-var seedDB = require("./seeds");
-var Comment = require("./models/comment")
-
-var User = require("./models/user")
-var passport = require("passport")
-var localStrategy = require("passport-local")
-var session = require("express-session")
-var methodOverride = require("method-override")
+var User = require("./models/user");
+var passport = require("passport");
+var localStrategy = require("passport-local");
+var session = require("express-session");
+var methodOverride = require("method-override");
 
 
 // routers
-var authRoute = require("./routers/auth")
-var campgroundsRoute = require("./routers/campgrounds")
-var commentRoute = require("./routers/comments")
-var flash= require("connect-flash")
+var authRoute = require("./routers/auth");
+var campgroundsRoute = require("./routers/campgrounds");
+var commentRoute = require("./routers/comments");
+var flash= require("connect-flash");
 
-//seedDB();
-
+var url = process.env.database || 'mongodb://localhost:27017/yelpcamp';
+mongoose.connect(url , {useNewUrlParser: true});
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public') );
 app.use(methodOverride('_method'));
-app.use(flash())
+app.use(flash());
 
 app.use(session({
     secret:'i love cat',
@@ -47,8 +40,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res, next){
     res.locals.currentUser = req.user;
-    res.locals.success = req.flash('success')
-    res.locals.error = req.flash('error')
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next();
 });
 
