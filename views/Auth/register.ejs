@@ -1,9 +1,26 @@
 <% include ../partials/header%>
-<h1>Register there!</h1>
-
-<form action='/register' method='post'> 
-    <input type='text' name='username' placeholder='username'>
-    <input type='password' name='password' placeholder='password'>
-    <button>Register</button>
-</form>
+<div class='container'>
+    <h1 class='text-center mt-5'>Sign Up</h1>
+    <form action='/register' method='post'>
+        <div class='row mt-4'>
+            <div class='col-4'></div>
+            <div class='col-4'>
+                <input class='form-control' type='text'  name='username' placeholder='username'>
+            </div>
+        </div>
+        <div class='row mt-2'>
+            <div class='col-4'></div>
+            <div class='col-4'>
+                <input class='form-control' type='password' name='password' placeholder='password'>
+            </div>
+        </div>
+        <div class='row mt-2'>
+            <div class='col-4'></div>
+            <div class='col-4'>
+                <button class='mt-2 btn btn-lg btn-block btn-primary'>Sign Up</button>
+                <a href='/campgrounds'>Back</a>
+            </div>
+        </div>
+    </form>
+</div>
 <% include ../partials/footer%>
