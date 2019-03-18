@@ -12,8 +12,12 @@ router.get('/', function(req, res){
 
 //load all camps
 router.get('/campgrounds', function(req, res){
-    camp.find({}, 
-    function(err, result) {
+    if (req.query.searchCampground) {
+        var targetCamp = new RegExp(req.query.searchCampground,"i");
+    } else{
+        var targetCamp = new RegExp('',"i");
+    }
+    camp.find({name:targetCamp},  function(err, result) {
         if(err) {
             console.log('there is a err');
             console.log(err);
