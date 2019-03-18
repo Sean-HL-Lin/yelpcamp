@@ -26,7 +26,12 @@
 }
 
 .landing h1 {
-  color: rgb(83, 239, 86);
+    color: #ffffff;
+    font-family: 'Trocchi', serif;
+}
+
+body {
+    font-family: 'Trocchi', serif;
 }
 
 .slideshow {
