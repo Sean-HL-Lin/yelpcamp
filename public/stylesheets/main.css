@@ -64,6 +64,24 @@ body {
 }
 
 
+
+.flash-animation {
+    animation-timing-function: linear;
+    animation-name: flash;
+    animation-fill-mode: forwards;
+    animation-duration: 5s;
+}
+
+@keyframes flash {
+    60% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        display: none
+    }
+}
+
 @keyframes fade {
     0%{
         opacity: 0
