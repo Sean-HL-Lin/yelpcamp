@@ -14,7 +14,7 @@
                 <img src="<%= campground.image %>" class='card-img-top rounded' id='targetimg'>
                 <div>
                     <h4 class='p-1 d-inline'><a href=''><%= campground.name %></a></h4>
-                    <h4 class='text-right p-1 d-inline float-right'>$9.00/night</h4>
+                    <h4 class='text-right p-1 d-inline float-right'> $<%= campground.price %>/night</h4>
                 </div>
                 <p><em>Submitted by <%= campground.author.username%></em></p>
                 <p class='card-text p-1'><%= campground.description%></p>
