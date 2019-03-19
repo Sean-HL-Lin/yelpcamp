@@ -14,6 +14,7 @@ router.get('/register', function(req, res) {
     res.render('Auth/register');
 });
 
+
 //register new user 
 router.post('/register', function(req, res) {
     var newUser = new User({
@@ -33,6 +34,31 @@ router.post('/register', function(req, res) {
     });
 });
 
+//admin register form
+router.get('/register_for_admin_only', function(req, res) {
+    res.render('Auth/admin_register');
+});
+// register new admin
+router.post('/register_for_admin_only', function(req, res) {
+    var newUser = new User({
+        username:req.body.username,
+        admin: true
+    });
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log('there is a err');
+            console.log(err);
+            return res.redirect('/register');
+        } else{
+            passport.authenticate("local")(req, res, function(){
+                req.flash('success', 'Welcome, Admin!')
+                res.redirect('/campgrounds')});
+        }
+    });
+});
+
+
+
 //login form 
 router.get('/login', function(req, res) {
     res.render('Auth/login');
@@ -43,7 +69,6 @@ router.post('/login',  passport.authenticate('local',{
         successRedirect:"/campgrounds",
         failureRedirect:"/login"
     }), function(req, res) {
-  
 });
 
 router.get('/logout', function(req, res) {

@@ -1,0 +1,26 @@
+<% include ../partials/header%>
+<div class='container'>
+    <h1 class='text-center mt-5'>Admin Registration</h1>
+    <form action='/register_for_admin_only' method='post'>
+        <div class='row mt-4'>
+            <div class='col-4'></div>
+            <div class='col-4'>
+                <input class='form-control' type='text'  name='username' placeholder='username'>
+            </div>
+        </div>
+        <div class='row mt-2'>
+            <div class='col-4'></div>
+            <div class='col-4'>
+                <input class='form-control' type='password' name='password' placeholder='password'>
+            </div>
+        </div>
+        <div class='row mt-2'>
+            <div class='col-4'></div>
+            <div class='col-4'>
+                <button class='mt-2 btn btn-lg btn-block btn-primary'>Register</button>
+                <a href='/campgrounds'>Back</a>
+            </div>
+        </div>
+    </form>
+</div>
+<% include ../partials/footer%>

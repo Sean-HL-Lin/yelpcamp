@@ -18,8 +18,8 @@
                 </div>
                 <p><em>Submitted by <%= campground.author.username%></em></p>
                 <p class='card-text p-1'><%= campground.description%></p>
-                <% if (currentUser && campground.author.id.equals(currentUser._id)){ %>
-                <div class='ml-2 mb-2'>
+                <% if (currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.admin){ %>
+                <div class='ml-2 mb-2 '>
                     <a class='btn  btn-warning d-inline'href='/campgrounds/<%= campground._id %>/edit'> Edit </a>
                     <form class='d-inline'action='/campgrounds/<%= campground._id %>?_method=Delete' method='post'>
                         <button class='btn btn-xs btn-danger ml-2'> Delete </a>
@@ -41,7 +41,7 @@
                             <P class='mb-0'>
                                <%= comment.text%> 
                             </P>
-                            <% if (comment.author.id.equals(currentUser._id)) { %>
+                            <% if (currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.admin) { %>
                                 <a class='btn btn-sm btn-warning d-inline'href='/campgrounds/<%=campground._id%>/comments/<%= comment._id %>/edit'> Edit </a>
                                 <form class='d-inline'action='/campgrounds/<%=campground._id%>/comments/<%= comment._id %>?_method=Delete' method='post'>
                                     <input type='submit' value=' delete' class='btn btn-sm btn-danger ml-2'>

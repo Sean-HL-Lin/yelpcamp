@@ -14,14 +14,13 @@ middleWares.isLoggedIn = function(req, res, next){
 middleWares.checkCampgroundOwnership = function(req,res,next){
     if(req.isAuthenticated){
         camp.findById(req.params.id, function(err, resultperson){
-            if(resultperson.author.id.equals(req.user._id)){
+            if(resultperson.author.id.equals(req.user._id) || req.user.admin){
                 next();
             } else {
                 req.flash('error', 'authorization failed')
                 res.redirect("back");
             }
         });
-        
     } else {
         req.flash('error', 'authentication failed')
         res.redirect('/login');
