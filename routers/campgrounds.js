@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router({mergeParams:true});
 var camp = require("../models/campground");
 var middleWares = require("../middlewares/index");
+var User = require("../models/user")
 //=====================
 //campgrounds
 //==========================
@@ -47,6 +48,17 @@ router.post('/new', middleWares.isLoggedIn, function(req,res){
         } else {
             //redirect to right page
             req.flash('success','Campground Created')
+            // add camp id to user database
+            User.findById(req.user._id, function(err, user) {
+                if (err){
+                    console.log('user not found')
+                } else {
+                    user.createdCamps.push(result._id)
+                    user.save()
+                    console.log(user)
+                }
+            })
+            // redirect
             res.redirect('/campgrounds');
         }
     });

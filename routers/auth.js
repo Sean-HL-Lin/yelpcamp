@@ -77,4 +77,21 @@ router.get('/logout', function(req, res) {
   res.redirect('/campgrounds');
 });
 
+
+//user profile
+router.get('/user/:id', function(req, res) {
+    User.findById(req.params.id).populate('createdCamps').exec(
+        function(err, user){
+            if(err){
+                console.log('user not found')
+            } else {
+                res.render('user/show', {user:user})
+            }
+        }
+)
+})
+
+    
+
+
 module.exports = router;

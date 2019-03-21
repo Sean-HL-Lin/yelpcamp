@@ -17,7 +17,7 @@
                     <h4 class='p-1 d-inline'><a href=''><%= campground.name %></a></h4>
                     <h4 class='text-right p-1 d-inline float-right'> $<%= campground.price %>/night</h4>
                 </div>
-                <p><em>Submitted by <%= campground.author.username%></em></p>
+                <p><em>Submitted by  <a href='/user/<%=campground.author.id %>'><%= campground.author.username%></a> </em></p>
                 <p class='card-text p-1'><%= campground.description%></p>
                 <% if (currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.admin){ %>
                 <div class='ml-2 mb-2 '>
