@@ -78,7 +78,7 @@ body {
     }
     100%{
         opacity: 0;
-        display: none
+        display: none;
     }
 }
 
@@ -104,3 +104,9 @@ body {
 .search-form {
     float: right
 }
+
+
+#map {
+    height: 400px;  
+    width: 100%;  
+    }

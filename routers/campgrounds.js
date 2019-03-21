@@ -22,9 +22,6 @@ router.get('/campgrounds', function(req, res){
             console.log('there is a err');
             console.log(err);
         } else {
-            if(result.length==0) {
-                req.flash('error','campground not found')
-            }
             res.render('campgrounds/campgrounds', {campgrounds:result});
         }
     }
@@ -40,12 +37,8 @@ router.get('/campgrounds/new', middleWares.isLoggedIn, function(req, res){
 //create new camp
 router.post('/new', middleWares.isLoggedIn, function(req,res){
     //get data from form and creat new campground 
-    var name = req.body.name;
-    var image = req.body.image;
-    var price =req.body.price;
-    var description = req.body.description;
-    var author = {id:req.user._id, username:req.user.username};
-    var newcamp = {name:name, image:image, price:price, description:description, author:author};
+    req.body.camp.author = {id:req.user._id, username:req.user.username}
+    var newcamp = req.body.camp
     // add new camp to database 
     camp.create(newcamp, function(err, result){
         if(err) {
