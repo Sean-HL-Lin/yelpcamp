@@ -17,7 +17,7 @@
                     <h4 class='p-1 d-inline'><a href=''><%= campground.name %></a></h4>
                     <h4 class='text-right p-1 d-inline float-right'> $<%= campground.price %>/night</h4>
                 </div>
-                <p><em>Submitted by  <a href='/user/<%=campground.author.id %>'><%= campground.author.username%></a> </em></p>
+                <p><em>Submitted by  <a href='/user/<%=campground.author.id %>'><%= campground.author.username%></a> <%= moment(campground.createTime).fromNow() %> </em></p>
                 <p class='card-text p-1'><%= campground.description%></p>
                 <% if (currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.admin){ %>
                 <div class='ml-2 mb-2 '>
@@ -29,16 +29,28 @@
                 <% } %>
                
             </div>
-            <div class='border border-light bg-light mt-3 p-3' id='comment'>
-                <div class='text-right mb-4'>
-                    <a class='btn btn-sm btn-success' href='/campgrounds/<%=campground._id%>/comments/new'>Add new Comment</a>
+            
+            <div class='border  bg-light mt-3 p-3 rounded' id='comment'>
+                <div class='mb-4'>
+                    <div class='mb-3'>
+                        <h4 class='comments'>Comments <i class="fas fa-comments"></i></h4>
+                    </div >
+                    <div class='rounded' id='add-comment'>
+                        <div class='container'>
+                            <h4 class='mt-4 mb-3'>Write your comments<i class="fas fa-feather-alt"></i></h4>
+                            <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+                                <textarea type=textarea placeholder='Writing a new comment...' rows='5' name="comment[text]"></textarea>
+                                <button class='btn btn-md btn-success text-right mb-4'>Add new Comment <i class="fas fa-comments"></i></button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <% campground.comments.forEach(function(comment){%>
-                    <div class='row'>
+                    <div class='row mb-2'>
                         <div class='col-md-12'>
-                            <strong><%= comment.author.username%></strong>
-                            <span class='float-right'>10 days ago</span>
+                            <strong><i class="fas fa-user"></i> <%= comment.author.username%></strong>
+                            <span class='float-right'> <%= moment(comment.createTime).fromNow()%></span>
                             <P class='mb-0'>
                                <%= comment.text%> 
                             </P>

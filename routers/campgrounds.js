@@ -55,7 +55,6 @@ router.post('/new', middleWares.isLoggedIn, function(req,res){
                 } else {
                     user.createdCamps.push(result._id)
                     user.save()
-                    console.log(user)
                 }
             })
             // redirect
