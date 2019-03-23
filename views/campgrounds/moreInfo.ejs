@@ -33,9 +33,10 @@
             <div class='border  bg-light mt-3 p-3 rounded' id='comment'>
                 <div class='mb-4'>
                     <div class='mb-3'>
+                        <a data-toggle="collapse" href="#add-comment" class="btn btn-md btn-success float-right"><i class="fas fa-plus"></i> New Comment</a>
                         <h4 class='comments'>Comments <i class="fas fa-comments"></i></h4>
-                    </div >
-                    <div class='rounded' id='add-comment'>
+                    </div>
+                    <div class='rounded collapse' id='add-comment'>
                         <div class='container'>
                             <h4 class='mt-4 mb-3'>Write your comments<i class="fas fa-feather-alt"></i></h4>
                             <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
@@ -55,10 +56,20 @@
                                <%= comment.text%> 
                             </P>
                             <% if (currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.admin) { %>
-                                <a class='btn btn-sm btn-warning d-inline'href='/campgrounds/<%=campground._id%>/comments/<%= comment._id %>/edit'> Edit </a>
-                                <form class='d-inline'action='/campgrounds/<%=campground._id%>/comments/<%= comment._id %>?_method=Delete' method='post'>
-                                    <input type='submit' value=' delete' class='btn btn-sm btn-danger ml-2'>
-                                </form>
+                                <div></div>
+                                <div>
+                                    <a class='btn btn-sm btn-warning d-inline' data-toggle="collapse" href="#editComment_<%= comment._id %>" > Edit </a>
+                                    <form class='d-inline'action='/campgrounds/<%=campground._id%>/comments/<%= comment._id %>?_method=Delete' method='post'>
+                                        <input type='submit' value=' delete' class='btn btn-sm btn-danger ml-2'>
+                                    </form>
+                                    <div class='collapse' id='editComment_<%= comment._id %>'>
+                                        <form action="/campgrounds/<%=campground._id%>/comments/<%= comment._id %>?_method=put" method="POST">
+                                            <h5 class='mt-4 mb-3'>Edit your comments<i class="fas fa-feather-alt"></i></h5>
+                                            <textarea type=textarea rows='3' name="comment[text]"><%= comment.text %></textarea>
+                                            <button class='btn btn-md btn-success text-right mb-4'>update Comment <i class="fas fa-comments"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
                             <% } %>
 
                         </div>
@@ -69,6 +80,10 @@
         </div>    
     </div>
 </div>
+
+
+
+
 
 <a href='/campgrounds'>Back</a>
 
@@ -90,7 +105,7 @@
      
 </script>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3XSyCWyIdrFAu3iV5tKHaqkeaQwiGk4&callback=showmap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbl5CwA7EYMvoM8QaN2qQ6dXAWrFGvbUw&callback=showmap">
 </script>
 
     
