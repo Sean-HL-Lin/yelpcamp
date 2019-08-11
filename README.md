@@ -39,8 +39,6 @@ Each Campground has:
 
 
 
-
-
 e.g:
 
 
