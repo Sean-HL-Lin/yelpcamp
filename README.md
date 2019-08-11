@@ -4,5 +4,5 @@ The application is hosted on heroku with connenction to a cloud MongoDB database
 
 ## Final Product
 
-!["Home Page"]()
-!["Index Page"]()
+!["Home Page"](https://github.com/Sean-HL-Lin/yelpcamp/blob/master/docs/home.png)
+!["Index Page"](https://github.com/Sean-HL-Lin/yelpcamp/blob/master/docs/index.png)
